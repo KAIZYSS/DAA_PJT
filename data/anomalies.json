@@ -1,0 +1,272 @@
+[
+  {
+    "id": "anom_001",
+    "road_id": "road_003",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 60,
+    "description": "Metro line tunnel construction causing lane closures and severe peak gridlock"
+  },
+  {
+    "id": "anom_002",
+    "road_id": "road_004",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 60,
+    "description": "Metro line tunnel construction causing lane closures and severe peak gridlock"
+  },
+  {
+    "id": "anom_003",
+    "road_id": "road_003",
+    "type": "repair",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 45,
+    "description": "Underground utility repair work near Sterling Road junction"
+  },
+  {
+    "id": "anom_004",
+    "road_id": "road_004",
+    "type": "repair",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 45,
+    "description": "Underground utility repair work near Sterling Road junction"
+  },
+  {
+    "id": "anom_005",
+    "road_id": "road_007",
+    "type": "repair",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 50,
+    "description": "Bridge structural maintenance and resurfacing bottleneck on Anna Salai"
+  },
+  {
+    "id": "anom_006",
+    "road_id": "road_008",
+    "type": "repair",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 50,
+    "description": "Bridge structural maintenance and resurfacing bottleneck on Anna Salai"
+  },
+  {
+    "id": "anom_007",
+    "road_id": "road_007",
+    "type": "congestion",
+    "severity": 6,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 35,
+    "description": "Signal timing failure during high peak commuter rush"
+  },
+  {
+    "id": "anom_008",
+    "road_id": "road_008",
+    "type": "congestion",
+    "severity": 6,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 35,
+    "description": "Signal timing failure during high peak commuter rush"
+  },
+  {
+    "id": "anom_009",
+    "road_id": "road_009",
+    "type": "accident",
+    "severity": 9,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 80,
+    "description": "Multi-vehicle collision near Kathipara ramp; heavy backlog"
+  },
+  {
+    "id": "anom_010",
+    "road_id": "road_010",
+    "type": "accident",
+    "severity": 9,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 80,
+    "description": "Multi-vehicle collision near Kathipara ramp; heavy backlog"
+  },
+  {
+    "id": "anom_011",
+    "road_id": "road_009",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 55,
+    "description": "Airport access congestion and perimeter construction barrier"
+  },
+  {
+    "id": "anom_012",
+    "road_id": "road_010",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 55,
+    "description": "Airport access congestion and perimeter construction barrier"
+  },
+  {
+    "id": "anom_013",
+    "road_id": "road_011",
+    "type": "pothole",
+    "severity": 5,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 25,
+    "description": "Localized road surface deterioration on curbside lane"
+  },
+  {
+    "id": "anom_014",
+    "road_id": "road_012",
+    "type": "pothole",
+    "severity": 5,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 25,
+    "description": "Localized road surface deterioration on curbside lane"
+  },
+  {
+    "id": "anom_015",
+    "road_id": "road_015",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 60,
+    "description": "Severe bottleneck at Chromepet MIT bridge intersection"
+  },
+  {
+    "id": "anom_016",
+    "road_id": "road_016",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 60,
+    "description": "Severe bottleneck at Chromepet MIT bridge intersection"
+  },
+  {
+    "id": "anom_017",
+    "road_id": "road_015",
+    "type": "pothole",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 40,
+    "description": "Extensive monsoon cratering requiring cautionary crawl speed"
+  },
+  {
+    "id": "anom_018",
+    "road_id": "road_016",
+    "type": "pothole",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 40,
+    "description": "Extensive monsoon cratering requiring cautionary crawl speed"
+  },
+  {
+    "id": "anom_019",
+    "road_id": "road_019",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 50,
+    "description": "Interstate bus terminal transit bottleneck and flyover merging"
+  },
+  {
+    "id": "anom_020",
+    "road_id": "road_020",
+    "type": "congestion",
+    "severity": 8,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 50,
+    "description": "Interstate bus terminal transit bottleneck and flyover merging"
+  },
+  {
+    "id": "anom_021",
+    "road_id": "road_019",
+    "type": "repair",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 45,
+    "description": "Elevated bypass expansion structural work"
+  },
+  {
+    "id": "anom_022",
+    "road_id": "road_020",
+    "type": "repair",
+    "severity": 7,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 45,
+    "description": "Elevated bypass expansion structural work"
+  },
+  {
+    "id": "anom_023",
+    "road_id": "road_033",
+    "type": "pothole",
+    "severity": 2,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 10,
+    "description": "Minor asphalt wearing near Pallikaranai marshland boundary"
+  },
+  {
+    "id": "anom_024",
+    "road_id": "road_034",
+    "type": "pothole",
+    "severity": 2,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 10,
+    "description": "Minor asphalt wearing near Pallikaranai marshland boundary"
+  },
+  {
+    "id": "anom_025",
+    "road_id": "road_035",
+    "type": "congestion",
+    "severity": 3,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 15,
+    "description": "Brief evening bazaar clearance delay at Medavakkam junction"
+  },
+  {
+    "id": "anom_026",
+    "road_id": "road_036",
+    "type": "congestion",
+    "severity": 3,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 15,
+    "description": "Brief evening bazaar clearance delay at Medavakkam junction"
+  },
+  {
+    "id": "anom_027",
+    "road_id": "road_039",
+    "type": "repair",
+    "severity": 4,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 20,
+    "description": "Fiber optic cable trench resurfacing on service lane"
+  },
+  {
+    "id": "anom_028",
+    "road_id": "road_040",
+    "type": "repair",
+    "severity": 4,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 20,
+    "description": "Fiber optic cable trench resurfacing on service lane"
+  },
+  {
+    "id": "anom_029",
+    "road_id": "road_041",
+    "type": "congestion",
+    "severity": 4,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 25,
+    "description": "IT shift end peak queue at Navalur toll plaza"
+  },
+  {
+    "id": "anom_030",
+    "road_id": "road_042",
+    "type": "congestion",
+    "severity": 4,
+    "timestamp": "2026-08-15 08:30:00",
+    "duration_minutes": 25,
+    "description": "IT shift end peak queue at Navalur toll plaza"
+  }
+]

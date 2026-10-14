@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROUTEWISE — Reliable Route Advisor</title>
+  <meta name="description" content="Intelligent GIS Route Advisor with Anomaly-Aware Rerouting and Dijkstra Pathfinding.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS (Local Vendor) -->
+  <link rel="stylesheet" href="/static/vendor/leaflet/leaflet.css" />
+
+  <!-- Lucide Icons (Local Vendor) -->
+  <script src="/static/vendor/lucide/lucide.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div id="app-root">
+
+    <!-- 1. Top Navigation Bar (Shell Load Sequence: Slides Down 150ms) -->
+    <header class="top-nav">
+      <div class="brand-wrapper">
+        <button id="toggle-sidebar-btn" class="nav-collapse-btn" aria-label="Toggle Navigation">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="brand-icon">
+          <i data-lucide="navigation-2" style="width:20px;height:20px"></i>
+        </div>
+        <div class="brand-title">
+          <div class="brand-name">
+            ROUTEWISE
+          </div>
+          <div class="brand-subtitle">Reliable Route Advisor with Anomaly-Aware Rerouting</div>
+        </div>
+      </div>
+
+      <div class="nav-status">
+        <div class="status-indicator" id="db-status-indicator" title="Verifying API and SQLite database linkage...">
+          <span class="status-dot warning" id="db-status-dot"></span>
+          <span id="db-status-text">CONNECTING...</span>
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>MAP ONLINE</span>
+        </div>
+        <span style="color:var(--muted);font-size:11px;">OpenStreetMap &middot; Chennai Grid</span>
+      </div>
+
+    </header>
+
+    <!-- 2. Main Layout (Sidebar + Map Viewport) -->
+    <div class="main-layout">
+
+      <!-- Left Sidebar (Shell Load Sequence: Slides In From Left 200ms) -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+
+          <!-- Plan Your Route Card -->
+          <div class="panel-card">
+            <div class="card-header">
+              <span class="card-title">
+                <i data-lucide="map-pin" style="width:14px;height:14px;color:var(--accent)"></i>
+                Plan Your Route
+              </span>
+            </div>
+
+            <!-- Start Location Input -->
+            <div class="input-group">
+              <label class="input-label" for="start-input">Starting Point (A)</label>
+              <div class="input-container">
+                <i data-lucide="circle-dot" class="input-icon" style="width:16px;height:16px;color:var(--success)"></i>
+                <input type="text" id="start-input" class="text-input" placeholder="Search starting location..." autocomplete="off">
+              </div>
+              <div id="start-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+
+            <!-- Destination Input -->
+            <div class="input-group">
+              <label class="input-label" for="dest-input">Destination (B)</label>
+              <div class="input-container">
+                <i data-lucide="map-pin" class="input-icon" style="width:16px;height:16px;color:var(--danger)"></i>
+                <input type="text" id="dest-input" class="text-input" placeholder="Search destination..." autocomplete="off">
+              </div>
+              <div id="dest-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+
+            <!-- Input Controls Row -->
+            <div class="input-controls-row">
+              <button id="map-pick-btn" class="btn-secondary" title="Pick point directly on the map">
+                <i data-lucide="crosshair" style="width:14px;height:14px"></i>
+                Pick on Map
+              </button>
+              <button id="swap-btn" class="btn-secondary" title="Swap start and destination">
+                <i data-lucide="arrow-up-down" style="width:14px;height:14px"></i>
+                Swap
+              </button>
+            </div>
+
+            <!-- Sliding Pill Segmented Control (Spec Section 3) -->
+            <div class="segmented-control-wrapper">
+              <div class="segmented-control">
+                <div id="segmented-indicator" class="segmented-indicator" style="transform: translateX(100%);"></div>
+                <div class="segmented-option" data-mode="fastest">
+                  <i data-lucide="zap" style="width:12px;height:12px"></i>
+                  Fastest
+                </div>
+                <div class="segmented-option active" data-mode="reliable">
+                  <i data-lucide="shield-check" style="width:12px;height:12px"></i>
+                  Reliable
+                </div>
+                <div class="segmented-option" data-mode="balanced">
+                  <i data-lucide="scale" style="width:12px;height:12px"></i>
+                  Balanced
+                </div>
+              </div>
+            </div>
+
+            <!-- Primary Action Button (Spec Section 3) -->
+            <button id="find-route-btn" class="btn-primary">
+              <div id="find-route-spinner" class="spinner" style="display:none"></div>
+              <span id="find-route-btn-text">FIND BEST ROUTE</span>
+            </button>
+          </div>
+
+          <!-- Network Status Card with Skeleton Shimmer (Spec Section 1 & 2) -->
+          <div class="panel-card">
+            <div class="card-header">
+              <span class="card-title">
+                <i data-lucide="activity" style="width:14px;height:14px;color:var(--accent)"></i>
+                Network Status
+              </span>
+              <span style="font-size:10px;color:var(--muted);text-transform:uppercase;">Live</span>
+            </div>
+
+            <div class="network-status-grid">
+              <div class="status-stat-card">
+                <span class="stat-label">Road Segments</span>
+                <span id="stat-segments" class="stat-value skeleton">--</span>
+              </div>
+              <div class="status-stat-card">
+                <span class="stat-label">Open Roads</span>
+                <span id="stat-open" class="stat-value risk-open skeleton">--</span>
+              </div>
+              <div class="status-stat-card">
+                <span class="stat-label">Flagged Hazards</span>
+                <span id="stat-flagged" class="stat-value skeleton">--</span>
+              </div>
+              <div class="status-stat-card">
+                <span class="stat-label">High-Risk Corridors</span>
+                <span id="stat-high-risk" class="stat-value risk-high skeleton">--</span>
+              </div>
+            </div>
+
+            <div class="academic-disclaimer">
+              Road-condition indicators shown here use prototype/simulated data for demonstration.
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Right Map Viewport -->
+      <main class="map-viewport">
+        <!-- Leaflet Map Container -->
+        <div id="map"></div>
+
+        <!-- Initial Map Skeleton Loading State (Spec Section 1) -->
+        <div id="map-skeleton-overlay" class="map-skeleton-overlay">
+          <div class="spinner" style="width:28px;height:28px;border-width:3px;"></div>
+          <span class="map-skeleton-text">Loading Road Network &amp; Tile Assets...</span>
+        </div>
+
+        <!-- Map Location Picking Active Banner -->
+        <div id="map-click-banner" class="map-click-banner">
+          <i data-lucide="mouse-pointer-click" style="width:14px;height:14px"></i>
+          <span>Click anywhere on the map to choose point</span>
+          <button id="cancel-map-pick-btn" style="background:transparent;border:none;color:#fff;cursor:pointer;margin-left:8px;font-size:11px;text-decoration:underline;">Cancel</button>
+        </div>
+
+        <!-- Floating Map Legend (Spec Section 13) -->
+        <div class="map-legend">
+          <div class="legend-section">
+            <div class="legend-title">Road Risk Tiers</div>
+            <div class="legend-item" data-tier="low" title="Hover to highlight on map">
+              <span class="legend-swatch low"></span>
+              <span>Low risk (0.00 &ndash; 0.33)</span>
+            </div>
+            <div class="legend-item" data-tier="moderate" title="Hover to highlight on map">
+              <span class="legend-swatch mod"></span>
+              <span>Moderate (0.34 &ndash; 0.66)</span>
+            </div>
+            <div class="legend-item" data-tier="high" title="Hover to highlight on map">
+              <span class="legend-swatch high"></span>
+              <span>High risk (0.67 &ndash; 1.00)</span>
+            </div>
+          </div>
+
+          <div class="legend-section">
+            <div class="legend-title">Route Visualization</div>
+            <div class="legend-item">
+              <span class="legend-line rec"></span>
+              <span>Recommended Route</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-line alt"></span>
+              <span>Alternate Corridor</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Route Analysis Panel (Slide/Fade Up From Bottom) (Spec Section 3 & 21) -->
+        <div id="route-analysis-panel" class="route-analysis-panel">
+          <div class="analysis-header">
+            <div class="analysis-title-group">
+              <i data-lucide="trending-up" style="width:16px;height:16px;color:var(--accent)"></i>
+              <span class="analysis-title">ROUTE ANALYSIS</span>
+              <span id="route-tier-badge" class="tier-badge low">LOW</span>
+            </div>
+            <button id="close-analysis-btn" class="close-panel-btn" title="Close Panel">
+              <i data-lucide="x" style="width:16px;height:16px"></i>
+            </button>
+          </div>
+
+          <!-- Key Metrics Grid with Rolling Numbers (Spec Section 2) -->
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-label">Total Distance</span>
+              <div class="metric-value-row">
+                <span id="metric-distance" class="metric-num" data-val="0">0.0</span>
+                <span class="metric-unit">km</span>
+              </div>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Estimated Time</span>
+              <div class="metric-value-row">
+                <span id="metric-time" class="metric-num" data-val="0">0</span>
+                <span class="metric-unit">min</span>
+              </div>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Road Segments</span>
+              <div class="metric-value-row">
+                <span id="metric-segments" class="metric-num" data-val="0">0</span>
+                <span class="metric-unit">links</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reliability Gauge Fill Animation (Spec Section 2) -->
+          <div class="reliability-container">
+            <div class="radial-gauge-wrapper">
+              <svg class="radial-gauge-svg" viewBox="0 0 52 52">
+                <circle class="gauge-bg" cx="26" cy="26" r="22"></circle>
+                <circle id="gauge-circle" class="gauge-progress" cx="26" cy="26" r="22"></circle>
+              </svg>
+              <div id="gauge-percent" class="gauge-center-text" data-val="0">0%</div>
+            </div>
+            <div class="reliability-info">
+              <div class="reliability-title">Reliability Rating</div>
+              <div id="route-mode-desc" class="reliability-desc">
+                Recommended route prioritizes reliability and minimizes anomaly exposure.
+              </div>
+            </div>
+          </div>
+
+          <!-- "Why This Route?" Explanation with Staggered Fade / Slide-Up (Spec Section 6) -->
+          <div class="why-route-section">
+            <div class="section-subtitle">
+              <i data-lucide="sparkles" style="width:13px;height:13px;color:var(--accent-light)"></i>
+              Why This Route?
+            </div>
+            <div id="why-route-list" class="why-route-list">
+              <!-- Dynamically populated with staggered animation -->
+            </div>
+          </div>
+
+          <!-- Route Comparison Panel Rows with Hover Lift (Spec Section 3 & 23) -->
+          <div class="comparison-section">
+            <div class="section-subtitle">
+              <i data-lucide="layers" style="width:13px;height:13px;color:var(--accent-light)"></i>
+              Route Options Comparison
+            </div>
+            <div id="comparison-rows" class="comparison-rows">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Road Information Panel (Slide in from Right Edge) (Spec Section 3 & 14) -->
+        <div id="road-info-panel" class="road-info-panel">
+          <div class="analysis-header">
+            <div class="analysis-title-group">
+              <i data-lucide="info" style="width:16px;height:16px;color:var(--accent)"></i>
+              <span id="road-name" class="analysis-title">Road Name</span>
+              <span id="road-risk-tier" class="tier-badge low">LOW</span>
+            </div>
+            <button id="close-road-info-btn" class="close-panel-btn" title="Close">
+              <i data-lucide="x" style="width:16px;height:16px"></i>
+            </button>
+          </div>
+
+          <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom:12px;">
+            <div class="metric-box">
+              <span class="metric-label">Reliability</span>
+              <div class="metric-value-row">
+                <span id="road-reliability" class="metric-num">--</span>
+              </div>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Road Status</span>
+              <div class="metric-value-row">
+                <span id="road-status" class="metric-num" style="font-size:14px;color:var(--success)">OPEN</span>
+              </div>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Segment Length</span>
+              <div class="metric-value-row">
+                <span id="road-distance" class="metric-num">--</span>
+              </div>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Nominal Speed</span>
+              <div class="metric-value-row">
+                <span id="road-speed" class="metric-num">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-subtitle">
+            <i data-lucide="alert-triangle" style="width:13px;height:13px;color:var(--warning)"></i>
+            Historical Incidents &amp; Hazards
+          </div>
+          <div id="road-anomalies-list" class="road-anomalies-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div class="academic-disclaimer" style="margin-top:14px;">
+            Simulated historical log for academic evaluation.
+          </div>
+        </div>
+
+        <!-- Toast Notifications Container (Spec Section 5) -->
+        <div id="toast-container" class="toast-container"></div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Leaflet JS (Local Vendor) -->
+  <script src="/static/vendor/leaflet/leaflet.js"></script>
+
+  <!-- Application JS Modules -->
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/map.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

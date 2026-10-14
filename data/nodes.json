@@ -1,0 +1,21 @@
+[
+  {"id": "node_central", "name": "Chennai Central", "lat": 13.0827, "lng": 80.2755},
+  {"id": "node_egmore", "name": "Egmore Junction", "lat": 13.0784, "lng": 80.2608},
+  {"id": "node_t_nagar", "name": "T. Nagar Panagal Park", "lat": 13.0418, "lng": 80.2341},
+  {"id": "node_saidapet", "name": "Saidapet Anna Salai", "lat": 13.0213, "lng": 80.2231},
+  {"id": "node_guindy", "name": "Guindy Kathipara", "lat": 13.0067, "lng": 80.2025},
+  {"id": "node_airport", "name": "Chennai Airport", "lat": 12.9866, "lng": 80.1652},
+  {"id": "node_pallavaram", "name": "Pallavaram Junction", "lat": 12.9675, "lng": 80.1491},
+  {"id": "node_chromepet", "name": "Chromepet Flyover", "lat": 12.9516, "lng": 80.1408},
+  {"id": "node_tambaram", "name": "Tambaram Gateway", "lat": 12.9249, "lng": 80.1000},
+  {"id": "node_perungalathur", "name": "Perungalathur Bypass", "lat": 12.9045, "lng": 80.0890},
+  {"id": "node_vandalur", "name": "Vandalur Zoo Junction", "lat": 12.8900, "lng": 80.0815},
+  {"id": "node_kelambakkam_rd", "name": "Kandigai Junction", "lat": 12.8550, "lng": 80.1200},
+  {"id": "node_vit", "name": "VIT Chennai Campus", "lat": 12.8406, "lng": 80.1534},
+  {"id": "node_adyar", "name": "Adyar Signal", "lat": 13.0012, "lng": 80.2565},
+  {"id": "node_velachery", "name": "Velachery MRTS Bypass", "lat": 12.9759, "lng": 80.2212},
+  {"id": "node_medavakkam", "name": "Medavakkam Koot Road", "lat": 12.9180, "lng": 80.1915},
+  {"id": "node_sholinganallur", "name": "Sholinganallur ELCOT", "lat": 12.9010, "lng": 80.2279},
+  {"id": "node_omr", "name": "OMR Navalur Toll", "lat": 12.8458, "lng": 80.2265},
+  {"id": "node_mambakkam", "name": "Mambakkam Signal", "lat": 12.8420, "lng": 80.1900}
+]

@@ -1,0 +1,1399 @@
+/* ==========================================================================
+   ROUTEWISE — Reliable Route Advisor
+   Theme: GIS Dark Analytics & Purposeful Motion Design
+   Standard Easing: cubic-bezier(0.4, 0, 0.2, 1)
+   ========================================================================== */
+
+:root {
+  /* Surface & Base Palette */
+  --background: #0b0f19;
+  --surface: #111827;
+  --surface-raised: #1f293d;
+  --surface-hover: #26334d;
+  --border: #243048;
+  --border-focus: #3b82f6;
+
+  /* Typography Colors */
+  --text: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --muted: #6b7280;
+
+  /* Accent & Status Colors */
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-glow: rgba(59, 130, 246, 0.35);
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.3);
+  --warning: #f59e0b;
+  --warning-glow: rgba(245, 158, 11, 0.3);
+  --danger: #ef4444;
+  --danger-glow: rgba(239, 68, 68, 0.3);
+
+  /* Geometry Tiers */
+  --tier-low: #10b981;
+  --tier-mod: #f59e0b;
+  --tier-high: #ef4444;
+
+  /* Motion Standards */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-page: 600ms;
+
+  /* Layout */
+  --sidebar-width: 380px;
+  --navbar-height: 58px;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Shell Layout */
+#app-root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   1. Top Navigation Bar (Shell Load Animation: Fade + Slide Down 150ms)
+   -------------------------------------------------------------------------- */
+.top-nav {
+  height: var(--navbar-height);
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  animation: navSlideDown var(--duration-fast) var(--ease-standard) forwards;
+}
+
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(31, 41, 61, 0.6);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+/* Pulsing Online Dot (2s loop) */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--success);
+  box-shadow: 0 0 8px var(--success);
+  animation: pulseDot 2s infinite var(--ease-standard);
+}
+
+.status-dot.warning {
+  background-color: var(--warning);
+  box-shadow: 0 0 8px var(--warning);
+  animation: pulseDotWarning 2s infinite var(--ease-standard);
+}
+
+.status-dot.danger {
+  background-color: var(--danger);
+  box-shadow: 0 0 8px var(--danger);
+  animation: pulseDotDanger 1.5s infinite var(--ease-standard);
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.95);
+    box-shadow: 0 0 4px var(--success);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 10px var(--success);
+  }
+}
+
+@keyframes pulseDotWarning {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.95);
+    box-shadow: 0 0 4px var(--warning);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 10px var(--warning);
+  }
+}
+
+@keyframes pulseDotDanger {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.95);
+    box-shadow: 0 0 4px var(--danger);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 12px var(--danger);
+  }
+}
+
+
+.nav-collapse-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+/* --------------------------------------------------------------------------
+   2. Main Container (Sidebar + Map Viewport)
+   -------------------------------------------------------------------------- */
+.main-layout {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   3. Sidebar (Shell Load Animation: Slide from left 200ms with 50ms delay)
+   -------------------------------------------------------------------------- */
+.sidebar {
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--navbar-height));
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 500;
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: sidebarSlideIn 200ms 50ms var(--ease-standard) both;
+  transition: transform var(--duration-normal) var(--ease-standard),
+              width var(--duration-normal) var(--ease-standard);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+@keyframes sidebarSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sidebar-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card Containers */
+.panel-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.panel-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Location Inputs & Autocomplete
+   -------------------------------------------------------------------------- */
+.input-group {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.input-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.text-input {
+  width: 100%;
+  height: 38px;
+  background: #0d131f;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0 36px 0 34px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.text-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.input-action-btn {
+  position: absolute;
+  right: 6px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.input-action-btn:hover {
+  color: var(--text);
+}
+
+/* Autocomplete Dropdown (Fade + Slide Down) */
+.autocomplete-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #151d2c;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  display: none;
+  animation: dropdownIn 150ms var(--ease-standard) forwards;
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.autocomplete-dropdown.open {
+  display: block;
+}
+
+.autocomplete-item {
+  padding: 9px 14px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+  background: var(--surface-hover);
+  color: var(--accent-light);
+}
+
+.autocomplete-item-desc {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.input-controls-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.btn-secondary {
+  flex: 1;
+  height: 32px;
+  background: #1a2335;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* --------------------------------------------------------------------------
+   5. Sliding Pill Segmented Control (Route Preference)
+   -------------------------------------------------------------------------- */
+.segmented-control-wrapper {
+  margin-bottom: 16px;
+}
+
+.segmented-control {
+  position: relative;
+  display: flex;
+  background: #0d131f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  user-select: none;
+}
+
+/* Gliding Indicator Pill */
+.segmented-indicator {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / 3);
+  background: var(--accent);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px var(--accent-glow);
+  transition: transform var(--duration-normal) var(--ease-standard);
+  pointer-events: none;
+}
+
+.segmented-option {
+  flex: 1;
+  text-align: center;
+  padding: 7px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.segmented-option.active {
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   6. Primary Button with States (Normal, Hover, Press, Calculating, Success)
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  width: 100%;
+  height: 42px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: 1px solid #3b82f6;
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success Glow Flash */
+.btn-primary.success-flash {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 20px var(--success-glow) !important;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   7. Network Status Panel with Pulse / Shimmer Skeleton
+   -------------------------------------------------------------------------- */
+.network-status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.status-stat-card {
+  background: #0d131f;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-value.risk-high {
+  color: var(--tier-high);
+}
+
+.stat-value.risk-open {
+  color: var(--tier-low);
+}
+
+/* Skeleton Loading Shimmer */
+.skeleton {
+  background: linear-gradient(90deg, #151d2c 25%, #243048 50%, #151d2c 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  color: transparent !important;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.academic-disclaimer {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border-left: 2px solid var(--border);
+}
+
+/* --------------------------------------------------------------------------
+   8. Map Viewport & Overlays
+   -------------------------------------------------------------------------- */
+.map-viewport {
+  flex: 1;
+  height: calc(100vh - var(--navbar-height));
+  position: relative;
+  background: #0b0f19;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  background: #111827;
+}
+
+/* Map Loading Skeleton Overlay */
+.map-skeleton-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+  pointer-events: none;
+}
+
+.map-skeleton-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.map-skeleton-text {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--accent-light);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   9. Floating Map Legend
+   -------------------------------------------------------------------------- */
+.map-legend {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(17, 24, 39, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  z-index: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  min-width: 170px;
+}
+
+.legend-section {
+  margin-bottom: 10px;
+}
+
+.legend-section:last-child {
+  margin-bottom: 0;
+}
+
+.legend-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 3px 0;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.legend-item:hover {
+  color: var(--text);
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-swatch.low { background-color: var(--tier-low); }
+.legend-swatch.mod { background-color: var(--tier-mod); }
+.legend-swatch.high { background-color: var(--tier-high); }
+
+.legend-line {
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.legend-line.rec { background-color: #3b82f6; }
+.legend-line.alt { background-color: #94a3b8; }
+
+/* --------------------------------------------------------------------------
+   10. Route Analysis Panel (Slide/Fade Up from Bottom)
+   -------------------------------------------------------------------------- */
+.route-analysis-panel {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  width: 440px;
+  max-width: calc(100% - 48px);
+  max-height: calc(100% - 48px);
+  overflow-y: auto;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  z-index: 600;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-standard),
+              transform var(--duration-normal) var(--ease-standard);
+}
+
+.route-analysis-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.analysis-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analysis-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.tier-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.tier-badge.low {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--tier-low);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tier-badge.moderate {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--tier-mod);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tier-badge.high {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--tier-high);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.close-panel-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.close-panel-btn:hover {
+  color: var(--text);
+}
+
+/* Key Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.metric-box {
+  background: #0d131f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.metric-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.metric-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-unit {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Reliability Gauge / Progress Fill */
+.reliability-container {
+  background: #0d131f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.radial-gauge-wrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.radial-gauge-svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-bg {
+  fill: none;
+  stroke: var(--surface-raised);
+  stroke-width: 4;
+}
+
+.gauge-progress {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 138; /* 2 * PI * 22 */
+  stroke-dashoffset: 138;
+  transition: stroke-dashoffset 800ms var(--ease-standard),
+              stroke var(--duration-normal) var(--ease-standard);
+}
+
+.gauge-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.reliability-info {
+  flex: 1;
+}
+
+.reliability-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.reliability-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   11. "Why This Route?" Staggered Fade / Slide-Up
+   -------------------------------------------------------------------------- */
+.why-route-section {
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.why-route-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.why-route-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text);
+  background: rgba(31, 41, 61, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 8px 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: itemSlideUp 300ms var(--ease-standard) forwards;
+  animation-delay: calc(var(--stagger-index, 0) * 100ms);
+}
+
+@keyframes itemSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.why-route-icon {
+  color: var(--success);
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. Route Comparison Panel Rows (Hover Lift + Active Highlight)
+   -------------------------------------------------------------------------- */
+.comparison-section {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.comparison-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comparison-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d131f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+
+/* Row Hover Lift (translateY -2px + shadow) */
+.comparison-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.comparison-row.active {
+  border-color: var(--accent);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 0 0 1px var(--accent), 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.comparison-name-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.comparison-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comparison-tag {
+  font-size: 9px;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+.comparison-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: right;
+}
+
+.comparison-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-stat-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.comparison-stat-label {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   13. Road Information Panel (Slide in from Right Edge)
+   -------------------------------------------------------------------------- */
+.road-info-panel {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 360px;
+  max-width: calc(100% - 48px);
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  z-index: 700;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  transform: translateX(400px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--duration-normal) var(--ease-standard),
+              opacity var(--duration-normal) var(--ease-standard);
+}
+
+.road-info-panel.visible {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.road-anomalies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.road-anomaly-item {
+  background: #0d131f;
+  border-left: 3px solid var(--tier-mod);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.road-anomaly-item.accident { border-left-color: var(--tier-high); }
+.road-anomaly-item.closure { border-left-color: var(--tier-high); }
+.road-anomaly-item.repair { border-left-color: var(--tier-mod); }
+.road-anomaly-item.congestion { border-left-color: var(--tier-mod); }
+.road-anomaly-item.pothole { border-left-color: #eab308; }
+
+.road-anomaly-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+
+.road-anomaly-meta {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   14. Toast Notification System (Slide Down & Auto Fade)
+   -------------------------------------------------------------------------- */
+.toast-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast-message {
+  min-width: 280px;
+  max-width: 440px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(-16px);
+  animation: toastSlideDown var(--duration-normal) var(--ease-standard) forwards;
+  transition: opacity var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.toast-message.dismissing {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+@keyframes toastSlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-message.error {
+  border-color: var(--danger);
+  background: rgba(35, 15, 18, 0.95);
+}
+
+.toast-message.success {
+  border-color: var(--success);
+  background: rgba(10, 32, 22, 0.95);
+}
+
+.toast-message.info {
+  border-color: var(--accent);
+  background: rgba(14, 25, 45, 0.95);
+}
+
+/* --------------------------------------------------------------------------
+   15. Leaflet Custom Markers & Animations
+   -------------------------------------------------------------------------- */
+.marker-pin-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Marker Drop-In Bounce Animation */
+.marker-drop-in {
+  animation: markerDropIn 450ms var(--ease-out-back) forwards;
+}
+
+@keyframes markerDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-36px) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.marker-pin {
+  width: 32px;
+  height: 32px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.marker-pin.start {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 2px solid #ffffff;
+}
+
+.marker-pin.dest {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border: 2px solid #ffffff;
+}
+
+.marker-letter {
+  transform: rotate(45deg);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* Map Click Mode Active Banner */
+.map-click-banner {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(37, 99, 235, 0.95);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 600;
+  display: none;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.map-click-banner.active {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   16. Responsive & Accessibility Guardrails
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .nav-collapse-btn {
+    display: flex;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.6);
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .route-analysis-panel {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+
+  .road-info-panel {
+    right: 12px;
+    left: 12px;
+    top: 12px;
+    width: auto;
+  }
+}
+
+/* Accessibility: prefers-reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .status-dot {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .skeleton {
+    animation: none !important;
+    background: #1f293d !important;
+  }
+}

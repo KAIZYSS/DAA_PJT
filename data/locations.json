@@ -1,0 +1,66 @@
+[
+  {
+    "id": "loc_central",
+    "name": "Chennai Central",
+    "node_id": "node_central",
+    "lat": 13.0827,
+    "lng": 80.2755,
+    "description": "Primary railway junction and northern transit hub"
+  },
+  {
+    "id": "loc_guindy",
+    "name": "Guindy",
+    "node_id": "node_guindy",
+    "lat": 13.0067,
+    "lng": 80.2025,
+    "description": "Industrial and commercial hub on GST Road"
+  },
+  {
+    "id": "loc_tambaram",
+    "name": "Tambaram",
+    "node_id": "node_tambaram",
+    "lat": 12.9249,
+    "lng": 80.1000,
+    "description": "Southern gateway connecting suburban arterials"
+  },
+  {
+    "id": "loc_vit",
+    "name": "VIT Chennai",
+    "node_id": "node_vit",
+    "lat": 12.8406,
+    "lng": 80.1534,
+    "description": "Vandalur-Kelambakkam educational corridor"
+  },
+  {
+    "id": "loc_airport",
+    "name": "Chennai Airport",
+    "node_id": "node_airport",
+    "lat": 12.9866,
+    "lng": 80.1652,
+    "description": "Meenambakkam international transit gateway"
+  },
+  {
+    "id": "loc_sholinganallur",
+    "name": "Sholinganallur",
+    "node_id": "node_sholinganallur",
+    "lat": 12.9010,
+    "lng": 80.2279,
+    "description": "Major IT SEZ junction connecting OMR & ECR"
+  },
+  {
+    "id": "loc_omr",
+    "name": "OMR (Navalur)",
+    "node_id": "node_omr",
+    "lat": 12.8458,
+    "lng": 80.2265,
+    "description": "Rajiv Gandhi IT Expressway corridor"
+  },
+  {
+    "id": "loc_velachery",
+    "name": "Velachery",
+    "node_id": "node_velachery",
+    "lat": 12.9759,
+    "lng": 80.2212,
+    "description": "South-central residential and retail sector"
+  }
+]

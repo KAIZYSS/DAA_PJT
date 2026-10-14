@@ -1,0 +1,1162 @@
+[
+  {
+    "id": "road_001",
+    "name": "Poonamallee High Road",
+    "from_node": "node_central",
+    "to_node": "node_egmore",
+    "distance_km": 2.2,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0827,
+        80.2755
+      ],
+      [
+        13.0784,
+        80.2608
+      ]
+    ]
+  },
+  {
+    "id": "road_002",
+    "name": "Poonamallee High Road (Return)",
+    "from_node": "node_egmore",
+    "to_node": "node_central",
+    "distance_km": 2.2,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0784,
+        80.2608
+      ],
+      [
+        13.0827,
+        80.2755
+      ]
+    ]
+  },
+  {
+    "id": "road_003",
+    "name": "Chetpet - GN Chetty Road",
+    "from_node": "node_egmore",
+    "to_node": "node_t_nagar",
+    "distance_km": 4.6,
+    "speed_kmph": 50,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0784,
+        80.2608
+      ],
+      [
+        13.06,
+        80.245
+      ],
+      [
+        13.0418,
+        80.2341
+      ]
+    ]
+  },
+  {
+    "id": "road_004",
+    "name": "Chetpet - GN Chetty Road (Return)",
+    "from_node": "node_t_nagar",
+    "to_node": "node_egmore",
+    "distance_km": 4.6,
+    "speed_kmph": 50,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0418,
+        80.2341
+      ],
+      [
+        13.06,
+        80.245
+      ],
+      [
+        13.0784,
+        80.2608
+      ]
+    ]
+  },
+  {
+    "id": "road_005",
+    "name": "Anna Salai Arterial",
+    "from_node": "node_t_nagar",
+    "to_node": "node_saidapet",
+    "distance_km": 2.5,
+    "speed_kmph": 48,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0418,
+        80.2341
+      ],
+      [
+        13.0213,
+        80.2231
+      ]
+    ]
+  },
+  {
+    "id": "road_006",
+    "name": "Anna Salai Arterial (Return)",
+    "from_node": "node_saidapet",
+    "to_node": "node_t_nagar",
+    "distance_km": 2.5,
+    "speed_kmph": 48,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0213,
+        80.2231
+      ],
+      [
+        13.0418,
+        80.2341
+      ]
+    ]
+  },
+  {
+    "id": "road_007",
+    "name": "Maraimalai Adigal Bridge",
+    "from_node": "node_saidapet",
+    "to_node": "node_guindy",
+    "distance_km": 2.4,
+    "speed_kmph": 45,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0213,
+        80.2231
+      ],
+      [
+        13.0067,
+        80.2025
+      ]
+    ]
+  },
+  {
+    "id": "road_008",
+    "name": "Maraimalai Adigal Bridge (Return)",
+    "from_node": "node_guindy",
+    "to_node": "node_saidapet",
+    "distance_km": 2.4,
+    "speed_kmph": 45,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0067,
+        80.2025
+      ],
+      [
+        13.0213,
+        80.2231
+      ]
+    ]
+  },
+  {
+    "id": "road_009",
+    "name": "GST Expressway (Airport Link)",
+    "from_node": "node_guindy",
+    "to_node": "node_airport",
+    "distance_km": 4.8,
+    "speed_kmph": 55,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0067,
+        80.2025
+      ],
+      [
+        12.995,
+        80.183
+      ],
+      [
+        12.9866,
+        80.1652
+      ]
+    ]
+  },
+  {
+    "id": "road_010",
+    "name": "GST Expressway (Airport Link) (Return)",
+    "from_node": "node_airport",
+    "to_node": "node_guindy",
+    "distance_km": 4.8,
+    "speed_kmph": 55,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9866,
+        80.1652
+      ],
+      [
+        12.995,
+        80.183
+      ],
+      [
+        13.0067,
+        80.2025
+      ]
+    ]
+  },
+  {
+    "id": "road_011",
+    "name": "GST Road (Pallavaram Stretch)",
+    "from_node": "node_airport",
+    "to_node": "node_pallavaram",
+    "distance_km": 2.8,
+    "speed_kmph": 50,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9866,
+        80.1652
+      ],
+      [
+        12.9675,
+        80.1491
+      ]
+    ]
+  },
+  {
+    "id": "road_012",
+    "name": "GST Road (Pallavaram Stretch) (Return)",
+    "from_node": "node_pallavaram",
+    "to_node": "node_airport",
+    "distance_km": 2.8,
+    "speed_kmph": 50,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9675,
+        80.1491
+      ],
+      [
+        12.9866,
+        80.1652
+      ]
+    ]
+  },
+  {
+    "id": "road_013",
+    "name": "GST Flyover Corridor",
+    "from_node": "node_pallavaram",
+    "to_node": "node_chromepet",
+    "distance_km": 2.1,
+    "speed_kmph": 52,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9675,
+        80.1491
+      ],
+      [
+        12.9516,
+        80.1408
+      ]
+    ]
+  },
+  {
+    "id": "road_014",
+    "name": "GST Flyover Corridor (Return)",
+    "from_node": "node_chromepet",
+    "to_node": "node_pallavaram",
+    "distance_km": 2.1,
+    "speed_kmph": 52,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9516,
+        80.1408
+      ],
+      [
+        12.9675,
+        80.1491
+      ]
+    ]
+  },
+  {
+    "id": "road_015",
+    "name": "Sanatorium Corridor",
+    "from_node": "node_chromepet",
+    "to_node": "node_tambaram",
+    "distance_km": 4.4,
+    "speed_kmph": 52,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9516,
+        80.1408
+      ],
+      [
+        12.938,
+        80.12
+      ],
+      [
+        12.9249,
+        80.1
+      ]
+    ]
+  },
+  {
+    "id": "road_016",
+    "name": "Sanatorium Corridor (Return)",
+    "from_node": "node_tambaram",
+    "to_node": "node_chromepet",
+    "distance_km": 4.4,
+    "speed_kmph": 52,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9249,
+        80.1
+      ],
+      [
+        12.938,
+        80.12
+      ],
+      [
+        12.9516,
+        80.1408
+      ]
+    ]
+  },
+  {
+    "id": "road_017",
+    "name": "Mudichur Link - GST",
+    "from_node": "node_tambaram",
+    "to_node": "node_perungalathur",
+    "distance_km": 2.9,
+    "speed_kmph": 48,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9249,
+        80.1
+      ],
+      [
+        12.9045,
+        80.089
+      ]
+    ]
+  },
+  {
+    "id": "road_018",
+    "name": "Mudichur Link - GST (Return)",
+    "from_node": "node_perungalathur",
+    "to_node": "node_tambaram",
+    "distance_km": 2.9,
+    "speed_kmph": 48,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9045,
+        80.089
+      ],
+      [
+        12.9249,
+        80.1
+      ]
+    ]
+  },
+  {
+    "id": "road_019",
+    "name": "Vandalur Flyover Arterial",
+    "from_node": "node_perungalathur",
+    "to_node": "node_vandalur",
+    "distance_km": 2.3,
+    "speed_kmph": 50,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9045,
+        80.089
+      ],
+      [
+        12.89,
+        80.0815
+      ]
+    ]
+  },
+  {
+    "id": "road_020",
+    "name": "Vandalur Flyover Arterial (Return)",
+    "from_node": "node_vandalur",
+    "to_node": "node_perungalathur",
+    "distance_km": 2.3,
+    "speed_kmph": 50,
+    "status": "flagged",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.89,
+        80.0815
+      ],
+      [
+        12.9045,
+        80.089
+      ]
+    ]
+  },
+  {
+    "id": "road_021",
+    "name": "Vandalur-Kelambakkam West Rd",
+    "from_node": "node_vandalur",
+    "to_node": "node_kelambakkam_rd",
+    "distance_km": 5.6,
+    "speed_kmph": 55,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.89,
+        80.0815
+      ],
+      [
+        12.87,
+        80.1
+      ],
+      [
+        12.855,
+        80.12
+      ]
+    ]
+  },
+  {
+    "id": "road_022",
+    "name": "Vandalur-Kelambakkam West Rd (Return)",
+    "from_node": "node_kelambakkam_rd",
+    "to_node": "node_vandalur",
+    "distance_km": 5.6,
+    "speed_kmph": 55,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.855,
+        80.12
+      ],
+      [
+        12.87,
+        80.1
+      ],
+      [
+        12.89,
+        80.0815
+      ]
+    ]
+  },
+  {
+    "id": "road_023",
+    "name": "Kandigai - VIT Access Road",
+    "from_node": "node_kelambakkam_rd",
+    "to_node": "node_vit",
+    "distance_km": 3.8,
+    "speed_kmph": 50,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.855,
+        80.12
+      ],
+      [
+        12.8406,
+        80.1534
+      ]
+    ]
+  },
+  {
+    "id": "road_024",
+    "name": "Kandigai - VIT Access Road (Return)",
+    "from_node": "node_vit",
+    "to_node": "node_kelambakkam_rd",
+    "distance_km": 3.8,
+    "speed_kmph": 50,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.8406,
+        80.1534
+      ],
+      [
+        12.855,
+        80.12
+      ]
+    ]
+  },
+  {
+    "id": "road_025",
+    "name": "Kamarajar Promenade & Santhome Rd",
+    "from_node": "node_central",
+    "to_node": "node_adyar",
+    "distance_km": 10.2,
+    "speed_kmph": 42,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0827,
+        80.2755
+      ],
+      [
+        13.045,
+        80.28
+      ],
+      [
+        13.02,
+        80.265
+      ],
+      [
+        13.0012,
+        80.2565
+      ]
+    ]
+  },
+  {
+    "id": "road_026",
+    "name": "Kamarajar Promenade & Santhome Rd (Return)",
+    "from_node": "node_adyar",
+    "to_node": "node_central",
+    "distance_km": 10.2,
+    "speed_kmph": 42,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0012,
+        80.2565
+      ],
+      [
+        13.02,
+        80.265
+      ],
+      [
+        13.045,
+        80.28
+      ],
+      [
+        13.0827,
+        80.2755
+      ]
+    ]
+  },
+  {
+    "id": "road_027",
+    "name": "TTK Road & Chamiers Rd",
+    "from_node": "node_egmore",
+    "to_node": "node_adyar",
+    "distance_km": 9.4,
+    "speed_kmph": 38,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0784,
+        80.2608
+      ],
+      [
+        13.04,
+        80.25
+      ],
+      [
+        13.0012,
+        80.2565
+      ]
+    ]
+  },
+  {
+    "id": "road_028",
+    "name": "TTK Road & Chamiers Rd (Return)",
+    "from_node": "node_adyar",
+    "to_node": "node_egmore",
+    "distance_km": 9.4,
+    "speed_kmph": 38,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0012,
+        80.2565
+      ],
+      [
+        13.04,
+        80.25
+      ],
+      [
+        13.0784,
+        80.2608
+      ]
+    ]
+  },
+  {
+    "id": "road_029",
+    "name": "Raj Bhavan & Velachery Main Rd",
+    "from_node": "node_adyar",
+    "to_node": "node_velachery",
+    "distance_km": 4.9,
+    "speed_kmph": 40,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0012,
+        80.2565
+      ],
+      [
+        12.9759,
+        80.2212
+      ]
+    ]
+  },
+  {
+    "id": "road_030",
+    "name": "Raj Bhavan & Velachery Main Rd (Return)",
+    "from_node": "node_velachery",
+    "to_node": "node_adyar",
+    "distance_km": 4.9,
+    "speed_kmph": 40,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9759,
+        80.2212
+      ],
+      [
+        13.0012,
+        80.2565
+      ]
+    ]
+  },
+  {
+    "id": "road_031",
+    "name": "Inner Ring Road (Guindy-Velachery)",
+    "from_node": "node_guindy",
+    "to_node": "node_velachery",
+    "distance_km": 3.8,
+    "speed_kmph": 42,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        13.0067,
+        80.2025
+      ],
+      [
+        12.9759,
+        80.2212
+      ]
+    ]
+  },
+  {
+    "id": "road_032",
+    "name": "Inner Ring Road (Guindy-Velachery) (Return)",
+    "from_node": "node_velachery",
+    "to_node": "node_guindy",
+    "distance_km": 3.8,
+    "speed_kmph": 42,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9759,
+        80.2212
+      ],
+      [
+        13.0067,
+        80.2025
+      ]
+    ]
+  },
+  {
+    "id": "road_033",
+    "name": "Velachery-Tambaram Main Road",
+    "from_node": "node_velachery",
+    "to_node": "node_medavakkam",
+    "distance_km": 7.2,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9759,
+        80.2212
+      ],
+      [
+        12.945,
+        80.205
+      ],
+      [
+        12.918,
+        80.1915
+      ]
+    ]
+  },
+  {
+    "id": "road_034",
+    "name": "Velachery-Tambaram Main Road (Return)",
+    "from_node": "node_medavakkam",
+    "to_node": "node_velachery",
+    "distance_km": 7.2,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.918,
+        80.1915
+      ],
+      [
+        12.945,
+        80.205
+      ],
+      [
+        12.9759,
+        80.2212
+      ]
+    ]
+  },
+  {
+    "id": "road_035",
+    "name": "Medavakkam-Mambakkam Expressway",
+    "from_node": "node_medavakkam",
+    "to_node": "node_mambakkam",
+    "distance_km": 8.8,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.918,
+        80.1915
+      ],
+      [
+        12.88,
+        80.19
+      ],
+      [
+        12.842,
+        80.19
+      ]
+    ]
+  },
+  {
+    "id": "road_036",
+    "name": "Medavakkam-Mambakkam Expressway (Return)",
+    "from_node": "node_mambakkam",
+    "to_node": "node_medavakkam",
+    "distance_km": 8.8,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.842,
+        80.19
+      ],
+      [
+        12.88,
+        80.19
+      ],
+      [
+        12.918,
+        80.1915
+      ]
+    ]
+  },
+  {
+    "id": "road_037",
+    "name": "Mambakkam-VIT Campus Highway",
+    "from_node": "node_mambakkam",
+    "to_node": "node_vit",
+    "distance_km": 4.1,
+    "speed_kmph": 48,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.842,
+        80.19
+      ],
+      [
+        12.8406,
+        80.1534
+      ]
+    ]
+  },
+  {
+    "id": "road_038",
+    "name": "Mambakkam-VIT Campus Highway (Return)",
+    "from_node": "node_vit",
+    "to_node": "node_mambakkam",
+    "distance_km": 4.1,
+    "speed_kmph": 48,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.8406,
+        80.1534
+      ],
+      [
+        12.842,
+        80.19
+      ]
+    ]
+  },
+  {
+    "id": "road_039",
+    "name": "Perungudi OMR Link",
+    "from_node": "node_velachery",
+    "to_node": "node_sholinganallur",
+    "distance_km": 8.5,
+    "speed_kmph": 42,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9759,
+        80.2212
+      ],
+      [
+        12.94,
+        80.235
+      ],
+      [
+        12.901,
+        80.2279
+      ]
+    ]
+  },
+  {
+    "id": "road_040",
+    "name": "Perungudi OMR Link (Return)",
+    "from_node": "node_sholinganallur",
+    "to_node": "node_velachery",
+    "distance_km": 8.5,
+    "speed_kmph": 42,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.901,
+        80.2279
+      ],
+      [
+        12.94,
+        80.235
+      ],
+      [
+        12.9759,
+        80.2212
+      ]
+    ]
+  },
+  {
+    "id": "road_041",
+    "name": "Rajiv Gandhi IT Expressway",
+    "from_node": "node_sholinganallur",
+    "to_node": "node_omr",
+    "distance_km": 6.8,
+    "speed_kmph": 52,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.901,
+        80.2279
+      ],
+      [
+        12.87,
+        80.227
+      ],
+      [
+        12.8458,
+        80.2265
+      ]
+    ]
+  },
+  {
+    "id": "road_042",
+    "name": "Rajiv Gandhi IT Expressway (Return)",
+    "from_node": "node_omr",
+    "to_node": "node_sholinganallur",
+    "distance_km": 6.8,
+    "speed_kmph": 52,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.8458,
+        80.2265
+      ],
+      [
+        12.87,
+        80.227
+      ],
+      [
+        12.901,
+        80.2279
+      ]
+    ]
+  },
+  {
+    "id": "road_043",
+    "name": "Medavakkam-Sholinganallur Rd",
+    "from_node": "node_medavakkam",
+    "to_node": "node_sholinganallur",
+    "distance_km": 4.3,
+    "speed_kmph": 40,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.918,
+        80.1915
+      ],
+      [
+        12.901,
+        80.2279
+      ]
+    ]
+  },
+  {
+    "id": "road_044",
+    "name": "Medavakkam-Sholinganallur Rd (Return)",
+    "from_node": "node_sholinganallur",
+    "to_node": "node_medavakkam",
+    "distance_km": 4.3,
+    "speed_kmph": 40,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.901,
+        80.2279
+      ],
+      [
+        12.918,
+        80.1915
+      ]
+    ]
+  },
+  {
+    "id": "road_045",
+    "name": "Tambaram-Velachery Main Road",
+    "from_node": "node_medavakkam",
+    "to_node": "node_tambaram",
+    "distance_km": 8.9,
+    "speed_kmph": 40,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.918,
+        80.1915
+      ],
+      [
+        12.92,
+        80.145
+      ],
+      [
+        12.9249,
+        80.1
+      ]
+    ]
+  },
+  {
+    "id": "road_046",
+    "name": "Tambaram-Velachery Main Road (Return)",
+    "from_node": "node_tambaram",
+    "to_node": "node_medavakkam",
+    "distance_km": 8.9,
+    "speed_kmph": 40,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9249,
+        80.1
+      ],
+      [
+        12.92,
+        80.145
+      ],
+      [
+        12.918,
+        80.1915
+      ]
+    ]
+  },
+  {
+    "id": "road_047",
+    "name": "200 Feet Radial Road (West)",
+    "from_node": "node_airport",
+    "to_node": "node_velachery",
+    "distance_km": 6.5,
+    "speed_kmph": 46,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9866,
+        80.1652
+      ],
+      [
+        12.98,
+        80.19
+      ],
+      [
+        12.9759,
+        80.2212
+      ]
+    ]
+  },
+  {
+    "id": "road_048",
+    "name": "200 Feet Radial Road (West) (Return)",
+    "from_node": "node_velachery",
+    "to_node": "node_airport",
+    "distance_km": 6.5,
+    "speed_kmph": 46,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9759,
+        80.2212
+      ],
+      [
+        12.98,
+        80.19
+      ],
+      [
+        12.9866,
+        80.1652
+      ]
+    ]
+  },
+  {
+    "id": "road_049",
+    "name": "Pallavaram-Thoraipakkam 200ft Rd",
+    "from_node": "node_pallavaram",
+    "to_node": "node_medavakkam",
+    "distance_km": 6.2,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.9675,
+        80.1491
+      ],
+      [
+        12.94,
+        80.17
+      ],
+      [
+        12.918,
+        80.1915
+      ]
+    ]
+  },
+  {
+    "id": "road_050",
+    "name": "Pallavaram-Thoraipakkam 200ft Rd (Return)",
+    "from_node": "node_medavakkam",
+    "to_node": "node_pallavaram",
+    "distance_km": 6.2,
+    "speed_kmph": 45,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.918,
+        80.1915
+      ],
+      [
+        12.94,
+        80.17
+      ],
+      [
+        12.9675,
+        80.1491
+      ]
+    ]
+  },
+  {
+    "id": "road_051",
+    "name": "Navalur-Mambakkam Cross Link",
+    "from_node": "node_omr",
+    "to_node": "node_mambakkam",
+    "distance_km": 5.2,
+    "speed_kmph": 44,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.8458,
+        80.2265
+      ],
+      [
+        12.844,
+        80.208
+      ],
+      [
+        12.842,
+        80.19
+      ]
+    ]
+  },
+  {
+    "id": "road_052",
+    "name": "Navalur-Mambakkam Cross Link (Return)",
+    "from_node": "node_mambakkam",
+    "to_node": "node_omr",
+    "distance_km": 5.2,
+    "speed_kmph": 44,
+    "status": "open",
+    "risk_score": 0.0,
+    "geometry": [
+      [
+        12.842,
+        80.19
+      ],
+      [
+        12.844,
+        80.208
+      ],
+      [
+        12.8458,
+        80.2265
+      ]
+    ]
+  }
+]

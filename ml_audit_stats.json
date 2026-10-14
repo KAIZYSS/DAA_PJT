@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-10-14T16:34:14.755657+00:00",
+  "adas_stats": {
+    "total_records": 21325,
+    "date_range": "2022-06-01 to 2022-08-31",
+    "unique_dates": 51,
+    "unique_vehicles": 5,
+    "alert_counts": {
+      "cas_ldw": 6431,
+      "cas_hmw": 12328,
+      "cas_fcw": 590,
+      "cas_pcw": 1976
+    },
+    "alert_ratios": {
+      "cas_ldw": 0.3016,
+      "cas_hmw": 0.5781,
+      "cas_fcw": 0.0277,
+      "cas_pcw": 0.0927
+    }
+  },
+  "n_roads": 52,
+  "class_distribution_estimate": {
+    "status": "OK",
+    "total_windows": 14,
+    "total_samples": 676,
+    "positive_samples": 520,
+    "negative_samples": 156,
+    "positive_ratio": 0.7692,
+    "negative_ratio": 0.2308,
+    "imbalance_ratio": 0.3
+  },
+  "note": "Simplified centroid-proximity estimate. Run ml_experiment.py for exact values."
+}
